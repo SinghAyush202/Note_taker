@@ -2,10 +2,18 @@ import { useEffect, useRef } from "react";
 import { api, setAuth } from "@/lib/api";
 import { saveUser } from "@/lib/storage";
 
-declare global { interface Window { google: any; } }
+declare global {
+  interface Window {
+    google: any;
+  }
+}
 
-export default function GoogleButton({ onSuccess, onError }:{
-  onSuccess?: () => void; onError?: (m: string) => void;
+export default function GoogleButton({
+  onSuccess,
+  onError,
+}: {
+  onSuccess?: () => void;
+  onError?: (m: string) => void;
 }) {
   const divRef = useRef<HTMLDivElement>(null);
 
@@ -16,14 +24,24 @@ export default function GoogleButton({ onSuccess, onError }:{
       client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
       callback: async (resp: any) => {
         try {
-          const { data } = await api.post("/auth/google-verify", { credential: resp.credential });
-          setAuth(data.token); saveUser(data.user); onSuccess?.();
-        } catch (e: any) { onError?.(e?.response?.data?.error || "Google login failed"); }
-      }
+          const { data } = await api.post("/auth/google-verify", {
+            credential: resp.credential,
+          });
+          setAuth(data.token);
+          saveUser(data.user);
+          onSuccess?.();
+        } catch (e: any) {
+          onError?.(e?.response?.data?.error || "Google login failed");
+        }
+      },
     });
 
     window.google.accounts.id.renderButton(divRef.current, {
-      theme: "filled_blue", size: "large", shape: "pill", width: 320, text: "continue_with"
+      theme: "filled_blue",
+      size: "large",
+      shape: "pill",
+      width: 320,
+      text: "continue_with",
     });
   }, []);
 
