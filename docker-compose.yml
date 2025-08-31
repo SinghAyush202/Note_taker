@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: notes-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongo_data:/data/db
+
+  maildev:
+    image: maildev/maildev:2.0.5
+    container_name: notes-maildev
+    restart: unless-stopped
+    ports:
+      - "1080:1080"  # web ui
+      - "1025:1025"  # smtp
+
+volumes:
+  mongo_data:
