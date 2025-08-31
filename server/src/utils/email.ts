@@ -1,5 +1,3 @@
-
-
 import nodemailer from "nodemailer";
 import crypto from "crypto";
 import { env } from "../env";
