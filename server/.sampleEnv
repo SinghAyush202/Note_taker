@@ -2,11 +2,10 @@ NODE_ENV=development
 PORT=4000
 FRONTEND_URL=http://localhost:5173
 
-# MONGO_URI=mongodb://root:root@localhost:27017/notes?authSource=admin
-MONGO_URI=mongodb+srv://ayusinghko00314_db_user:8xw4p9X5eeMBIDPE@cluster0.gj1uwd2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI=mongodb://localhost:27017
 
 
-JWT_SECRET=change-this-super-secret-key
+JWT_SECRET=ayush
 
 
 SMTP_HOST=smtp.gmail.com
@@ -16,5 +15,3 @@ SMTP_PASS=niqf ftyb hsmh wfsq
 SMTP_FROM="Notes App <your_gmail_address@gmail.com>"
 
 GOOGLE_CLIENT_ID=773171915812-vsc63v99svme3hs1q4bave4b2pl6a799.apps.googleusercontent.com
-
-
